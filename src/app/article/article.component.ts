@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostBinding, Input, OnInit} from '@angular/core';
+import {Article} from './article.model';
+import {tryCatch} from 'rxjs/internal-compatibility';
 
 @Component({
   selector: 'app-article',
@@ -7,9 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticleComponent implements OnInit {
 
-  constructor() { }
+  @HostBinding('attr.class') cssClass = 'row';
+  @Input() article: Article;
+  // article: Article;
+
+  constructor() {
+
+  }
 
   ngOnInit() {
+    // this.article = new Article('Angular 2', 'http://angular.io', 10);
+    // this.article = new()
   }
+
+  voteUp (): boolean {
+    this.article.voteUp();
+    return false;
+  }
+
+  voteDown (): boolean {
+    this.article.voteDown();
+    return false;
+  }
+
+
 
 }
